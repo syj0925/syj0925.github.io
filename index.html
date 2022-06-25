@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      auto2top: true,         
+      executeScript: true,
+      //relativePath: true,
+      coverpage: ['/', '/en/'],                    // 开启封面，并指定_coverpage.md路径 (设置为true: 相当于'/'目录)
+      loadSidebar: true,                           // 载入_sidebar.md，开启 侧边栏
+      loadNavbar: true,                            // 载入_navbar.md，开启 网页右上角的导航菜单
+      mergeNavbar: true,
+
+      maxLevel: 4,
+      subMaxLevel: 3,                              // 显示.md文件的目录在侧边栏中，数字3表示层级数
+
+      name: 'FFO - Firmware for ODM',              // 设置侧边栏headline的名称
+      logo: '_media/FFO.png height="90px"',        // (name必须开启，否则logo无效)设置侧边栏headline为logo，这时显示logo，不是显示name
+      //nameLink: 'https://gitee.com/syj0925/ffo', // 设置侧边栏的headline链接，也就是点击headline跳转到这个链接，如果不设置默认跳转到主页
+      repo: 'https://gitee.com/syj0925/ffo',       // 开启右上角的github猫图标，并关联仓库地址
+
+      requestHeaders: {
+        'cache-control': 'max-age=3600',
+      },
+      scrollToTop: {                               // 左下角增加一个"Top"按键，快速回到顶部(依赖_scripts/docsify-scroll-to-top.min.js)         
+        auto: true,
+        text: 'Top',
+        right: 15,
+        bottom: 15,
+        offset: 500
+      },
+      formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',
+      search: {
+        noData: {
+          '/': '没有结果!',
+          '/en/': 'No results!'
+        },
+        paths: 'auto',
+        placeholder: {
+          '/': '搜索',
+          '/en/': 'Search'
+        }
+      },
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (html) {
+            var url = 'https://gitee.com/syj0925/ffo/docs/' + vm.route.file
+            var editHtml = '[:memo: Edit this page](' + url + ')\n'
+
+            return '_Last modified {docsify-updated}_ ' +
+              editHtml +
+              html +
+              '\n\n----\n' +
+              '>Powered by [FFO](https://gitee.com/syj0925/ffo)'
+          })
+        }
+      ]
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify"></script>
+</body>
+</html>
